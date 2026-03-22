@@ -41,9 +41,15 @@ export default function OrgChartD3({ data }) {
     const svgEl = d3.select(svgRef.current);
     svgEl.selectAll("*").remove();
 
+    const totalW = width  + margin.left + margin.right;
+    const totalH = height + margin.top  + margin.bottom;
+
     svgEl
-      .attr("width",  width  + margin.left + margin.right)
-      .attr("height", height + margin.top  + margin.bottom);
+      .attr("width",   "100%")
+      .attr("height",  totalH)
+      .attr("viewBox", `0 0 ${totalW} ${totalH}`)
+      .style("display", "block")
+      .style("margin",  "0 auto");
 
     const g = svgEl.append("g")
       .attr("transform", `translate(${margin.left},${margin.top})`);
